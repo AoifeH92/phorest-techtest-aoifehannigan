@@ -1,0 +1,28 @@
+{{page-title "Voucher"}}
+
+<div>
+  <label>Email</label>
+  <Input 
+      @type="email" 
+      @value={{this.email}}
+      data-test-email={{true}} />
+</div>
+<div>
+  <label>Phone Number</label>
+  <Input 
+      @type="text" 
+      @value={{this.phone}}
+      data-test-phone={{true}} />
+</div>
+<button {{on "click" (perform this.queryClients)}} data-test-search>Search</button>
+
+{{#if this.queryClients.isRunning}}
+  Loading...
+{{else}}
+  <ul>
+    {{#each this.clients as |client|}}
+      <li data-test-result>{{client.email}}</li>
+    {{/each}}
+  </ul>
+{{/if}}
+{{outlet}}
