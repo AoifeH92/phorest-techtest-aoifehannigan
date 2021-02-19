@@ -1,6 +1,7 @@
 {{#if @isLoading}}
   <span data-test-clients-loading>Loading...</span>
 {{else if @clients}}
+  <h2>Results:</h2>
   <ul>
     {{#each @clients as |client|}}
       <li 
@@ -12,30 +13,37 @@
         <span>
           {{#unless (eq this.selectedClient.id client.id)}}
             <button {{on "click" (fn (mut this.selectedClient) client)}} data-test-select-client>Select</button>
+          {{else}}
+            Selected
           {{/unless}}
         </span>
       </li>
     {{/each}}
   </ul>
 
-  <Input 
-      @type="number"
-      @value={{this.voucherValue}}
-      @min="1"
-      data-test-voucher-value={{true}} />
+  <div class="form-element">
+    <label class="label">Enter Voucher Value:</label>
+    <Input 
+        @type="number"
+        @value={{this.voucherValue}}
+        @min="1"
+        data-test-voucher-value={{true}} />
+  </div>
+  
+  <div class="form-element">
+    <button {{on "click" this.createVoucher}} disabled={{not this.allowCreate}} data-test-create-voucher>
+      {{#if @createVoucher.isRunning}}
+        Creating...
+      {{else}}
+        Create Voucher
+      {{/if}}
 
-  <button {{on "click" this.createVoucher}} disabled={{not this.allowCreate}} data-test-create-voucher>
-    {{#if @createVoucher.isRunning}}
-      Creating...
-    {{else}}
-      Create Voucher
-    {{/if}}
-
-  </button>
+    </button>
+  </div>
 
   {{#if @voucher}}
     <div data-test-voucher>
-      €{{@voucher.originalBalance}} Voucher created for Client {{@voucher.clientId}} with serial number {{@voucher.serialNumber}}
+      €{{@voucher.originalBalance}} Voucher created for Client with serial number {{@voucher.serialNumber}}
     </div>
   {{/if}}
 {{/if}}

@@ -1,18 +1,27 @@
-<div>
-  <label>Email</label>
+<h1>Create a Voucher</h1>
+
+
+<p>Please enter an Email or Phone Number to search for a client.</p>
+<div class="form-element">
+  <label class="{{this.NS}}--label">Email</label>
   <Input 
       @type="email" 
       @value={{this.email}}
+      @placeholder="Email"
       data-test-email={{true}} />
 </div>
-<div>
-  <label>Phone Number</label>
+<div class="form-element">
+  <label class="{{this.NS}}--label">Phone Number</label>
   <Input 
       @type="text" 
       @value={{this.phone}}
+      @placeholder="Phone Number"
       data-test-phone={{true}} />
 </div>
-<button {{on "click" (fn this.submitForm email phone)}} data-test-search>Search</button>
+<div class="form-element">
+  <button {{on "click" (fn this.submitForm email phone)}} data-test-search>Search</button>
+</div>
+
 
 {{#if this.isEmpty}}
   <span data-test-form-empty>Please enter an email or phone number to search</span>

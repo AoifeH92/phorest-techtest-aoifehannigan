@@ -92,14 +92,13 @@ module('Integration | Component | voucher-form', function(hooks) {
 
   test('it displays the created voucher', async function(assert) {
     this.voucher = {
-      clientId: 1,
       serialNumber: 123,
       originalBalance: 20
     }
 
     await render(hbs`<VoucherForm @clients={{this.clients}} @isLoading={{false}} @voucher={{this.voucher}}/>`);
 
-    assert.dom('[data-test-voucher]').hasText('€20 Voucher created for Client 1 with serial number 123');
+    assert.dom('[data-test-voucher]').hasText('€20 Voucher created for Client with serial number 123');
   });
 
 });

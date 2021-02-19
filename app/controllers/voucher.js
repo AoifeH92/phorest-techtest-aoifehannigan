@@ -17,6 +17,7 @@ export default class VoucherController extends Controller {
   branchId = 'SE-J0emUgQnya14mOGdQSw';
   urlNamespace = '/third-party-api-server/api';
 
+
   @task *queryClients(email, phone) {
     let params = new URLSearchParams({ email, phone });
     params = this.removeEmptyParams(params.toString());

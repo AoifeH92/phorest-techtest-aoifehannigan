@@ -1,11 +1,14 @@
 {{page-title "Voucher"}}
 
-<SearchForm @queryClients={{this.queryClients}} />
+<div class="wrapper">
+  <SearchForm @queryClients={{this.queryClients}} />
 
-<VoucherForm 
-    @isLoading={{this.queryClients.isRunning}}
-    @clients={{this.clients}}
-    @createVoucher={{this.createVoucher}}
-    @voucher={{this.voucher}} />
+  <VoucherForm 
+      @isLoading={{this.queryClients.isRunning}}
+      @clients={{this.clients}}
+      @createVoucher={{this.createVoucher}}
+      @voucher={{this.voucher}} />
+</div>
+
 
 {{outlet}}

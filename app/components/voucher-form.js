@@ -5,6 +5,7 @@ import { action } from '@ember/object';
 export default class VoucherFormComponent extends Component {
   @tracked voucherValue = 0;
   @tracked selectedClient = this.args.clients[0];
+  
 
   get allowCreate() {
     return this.voucherValue > 0 && 
