@@ -2,13 +2,10 @@
 
 <SearchForm @queryClients={{this.queryClients}} />
 
-{{#if this.queryClients.isRunning}}
-  Loading...
-{{else}}
-  <ul>
-    {{#each this.clients as |client|}}
-      <li data-test-result>{{client.email}}</li>
-    {{/each}}
-  </ul>
-{{/if}}
+<VoucherForm 
+    @isLoading={{this.queryClients.isRunning}}
+    @clients={{this.clients}}
+    @createVoucher={{this.createVoucher}}
+    @voucher={{this.voucher}} />
+
 {{outlet}}

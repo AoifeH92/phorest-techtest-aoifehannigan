@@ -1,0 +1,41 @@
+{{#if @isLoading}}
+  <span data-test-clients-loading>Loading...</span>
+{{else if @clients}}
+  <ul>
+    {{#each @clients as |client|}}
+      <li 
+        data-test-result="{{client.id}}"
+        class={{if (eq this.selectedClient.id client.id) "selected" ""}}>
+        <span>{{client.firstName}} {{client.lastName}}</span>
+        <span>{{client.email}}</span>
+        <span>{{client.phone}}</span>
+        <span>
+          {{#unless (eq this.selectedClient.id client.id)}}
+            <button {{on "click" (fn (mut this.selectedClient) client)}} data-test-select-client>Select</button>
+          {{/unless}}
+        </span>
+      </li>
+    {{/each}}
+  </ul>
+
+  <Input 
+      @type="number"
+      @value={{this.voucherValue}}
+      @min="1"
+      data-test-voucher-value={{true}} />
+
+  <button {{on "click" this.createVoucher}} disabled={{not this.allowCreate}} data-test-create-voucher>
+    {{#if @createVoucher.isRunning}}
+      Creating...
+    {{else}}
+      Create Voucher
+    {{/if}}
+
+  </button>
+
+  {{#if @voucher}}
+    <div data-test-voucher>
+      €{{@voucher.originalBalance}} Voucher created for Client {{@voucher.clientId}} with serial number {{@voucher.serialNumber}}
+    </div>
+  {{/if}}
+{{/if}}
