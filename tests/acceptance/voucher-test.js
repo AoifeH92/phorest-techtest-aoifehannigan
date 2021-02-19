@@ -10,9 +10,5 @@ module('Acceptance | voucher', function(hooks) {
     await visit('/');
 
     assert.equal(currentURL(), '/');
-
-    assert.dom('[data-test-email]').exists();
-    assert.dom('[data-test-phone]').exists();
-    assert.dom('[data-test-search]').exists();
   });
 });

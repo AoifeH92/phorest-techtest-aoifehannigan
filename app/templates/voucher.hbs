@@ -1,20 +1,6 @@
 {{page-title "Voucher"}}
 
-<div>
-  <label>Email</label>
-  <Input 
-      @type="email" 
-      @value={{this.email}}
-      data-test-email={{true}} />
-</div>
-<div>
-  <label>Phone Number</label>
-  <Input 
-      @type="text" 
-      @value={{this.phone}}
-      data-test-phone={{true}} />
-</div>
-<button {{on "click" (perform this.queryClients)}} data-test-search>Search</button>
+<SearchForm @queryClients={{this.queryClients}} />
 
 {{#if this.queryClients.isRunning}}
   Loading...

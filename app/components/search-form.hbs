@@ -1,0 +1,19 @@
+<div>
+  <label>Email</label>
+  <Input 
+      @type="email" 
+      @value={{this.email}}
+      data-test-email={{true}} />
+</div>
+<div>
+  <label>Phone Number</label>
+  <Input 
+      @type="text" 
+      @value={{this.phone}}
+      data-test-phone={{true}} />
+</div>
+<button {{on "click" (fn this.submitForm email phone)}} data-test-search>Search</button>
+
+{{#if this.isEmpty}}
+  <span data-test-form-empty>Please enter an email or phone number to search</span>
+{{/if}}
